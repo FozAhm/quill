@@ -14,8 +14,8 @@ angular.module('reg')
     // Set up de states
     $stateProvider
       .state('login', {
-        url: "/login",
-        templateUrl: "views/login/login.html",
+        url: "/home",
+        templateUrl: "views/home/home.html",
         controller: 'LoginCtrl',
         data: {
           requireLogin: false
