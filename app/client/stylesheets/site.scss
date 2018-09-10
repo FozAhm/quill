@@ -52,6 +52,11 @@ $brand-tertiary: $tertiary;
 @import 'admin';
 @import 'home';
 
+@font-face {
+	font-family: "WHOOPASS";
+	src: url("../assets/images/WHOOPASS.ttf") format("truetype");
+}
+
 html,
 body {
   height: 100%;

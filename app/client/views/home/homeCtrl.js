@@ -6,7 +6,11 @@ angular.module('reg')
     'settings',
     'Utils',
     'AuthService',
-    function($scope, $http, $state, settings, Utils, AuthService){
-        $scope.homeState = 'home';
+    function ($scope, $http, $state, settings, Utils, AuthService, $location) {
+      $scope.homeState = 'home';
+
+      $scope.homeregister = function () {
+        window.location = "/login";
+      };
     }
   ]);

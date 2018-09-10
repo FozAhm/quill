@@ -1,9 +1,23 @@
 #home {
 
+    .navbar-brand {
+        font-family: "WHOOPASS";
+        font-size: 30px;
+    }
+
     #content {
         padding-top: 60px;
     }
-    
+
+    #sponsors {
+        img {
+            height: auto;
+            width: auto;
+            max-height: 150px;
+            margin: 15px;
+        }
+    }
+
     h1 {
         text-align: center;
         text-transform: uppercase;
