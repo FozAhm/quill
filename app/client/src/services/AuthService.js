@@ -56,7 +56,7 @@ angular.module('reg')
       authService.logout = function(callback) {
         // Clear the session
         Session.destroy(callback);
-        $state.go('login');
+        $state.go('home');
       };
 
       authService.register = function(email, password, onSuccess, onFailure) {
