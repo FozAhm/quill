@@ -16,7 +16,7 @@ angular.module('reg')
       }
 
       $scope.homeregister = function () {
-        window.location = "/";
+        window.location = "/dashboard";
       };
     }
   ]);

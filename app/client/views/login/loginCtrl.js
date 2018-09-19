@@ -55,7 +55,7 @@ angular.module('reg')
       };
 
       $scope.loginToHome = function () {
-        window.location = "/home";
+        window.location = "/";
       };
 
     }
