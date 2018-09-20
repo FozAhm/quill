@@ -33,7 +33,7 @@ angular.module('reg')
 
       $scope.sidenavToHome = function () {
         sessionStorage.setItem('status', 'login');
-        window.location = "/home";
+        window.location = "/";
       };
 
     }]);
