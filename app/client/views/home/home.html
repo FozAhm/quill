@@ -1,4 +1,5 @@
 <div id="home" class="page bootstrap">
+
 	<!--Navigation-->
 	<nav class="navbar fixed-top navbar-light bg-light navbar-toggleable-sm navbar-expand-md navbar-expand-lg">
 		<div class="container-fluid">
@@ -6,29 +7,36 @@
 				<a class="navbar-brand" href="#">WarHacks</a>
 			</div>
 
-			<ul class="navbar-nav navbar-right">
-				<li class="nav-item">
-					<a class="page-scroll" href="#about">About</a>
-				</li>
-				<li class="nav-item">
-					<a class="page-scroll" href="#schedule">Schedule</a>
-				</li>
-				<li class="nav-item">
-					<a class="page-scroll" href="#sponsors">Sponsors</a>
-				</li>
-				<li class="nav-item">
-					<a class="page-scroll" href="#faq">FAQ</a>
-				</li>
-				<li class="nav-item">
-					<a class="page-scroll" href="#contact">Contact</a>
-				</li>
-				<li class="nav-item">
-					<a href="#" ng-click="homeregister();">
+			<!-- Collapse button -->
+			<button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+			 aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
+
+			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
+				<ul class="nav navbar-nav float-right text-right ml-auto">
+					<li class="nav-item">
+						<a class="page-scroll" href="#about">About</a>
+					</li>
+					<li class="nav-item">
+						<a class="page-scroll" href="#schedule">Schedule</a>
+					</li>
+					<li class="nav-item">
+						<a class="page-scroll" href="#sponsors">Sponsors</a>
+					</li>
+					<li class="nav-item">
+						<a class="page-scroll" href="#faq">FAQ</a>
+					</li>
+					<li class="nav-item">
+						<a class="page-scroll" href="#contact">Contact</a>
+					</li>
+					<li class="nav-item">
+						<a href="#" ng-click="homeregister();">
 						<span ng-show="!loginStatus">Login</span>
 						<span ng-show="loginStatus">Dashboard</span>
 					</a>
-				</li>
-			</ul>
+					</li>
+				</ul>
+			</div>
+
 		</div>
 	</nav>
 
@@ -60,7 +68,7 @@
 					to work and build a robot that will accomplish the given challenges. These challenges will be unveiled at the beginning
 					of the competition and will be in the form of three different objectives. Teams can pick to complete one, two or all
 					three tasks at hand to gain as many points as they can.
-					</span> 
+					</span>
 					<span>
 					Students can register as teams or individually. If students register individually we will make sure to
 					pair them up with other students. This is a FREE Event. Competitors will be given a T-shirt, Lunch and Supper.
