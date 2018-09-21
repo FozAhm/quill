@@ -16,7 +16,7 @@ angular.module('reg')
       }
 
       $scope.homeregister = function () {
-        window.location = "/login";
+        window.location = ($scope.loginStatus ? "/dashboard" : "/login");
       };
     }
   ]);
