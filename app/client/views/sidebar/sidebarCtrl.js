@@ -17,6 +17,7 @@ angular.module('reg')
       $scope.pastConfirmation = Utils.isAfter(user.status.confirmBy);
 
       $scope.logout = function(){
+        sessionStorage.removeItem('status');
         AuthService.logout();
       };
 
@@ -29,5 +30,10 @@ angular.module('reg')
       $('.item').on('click', function(){
         $scope.showSidebar = false;
       });
+
+      $scope.sidenavToHome = function () {
+        sessionStorage.setItem('status', 'login');
+        window.location = "/";
+      };
 
     }]);
