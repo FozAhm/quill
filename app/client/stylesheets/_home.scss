@@ -64,9 +64,9 @@
         padding: 20px;
     }
 
-    img {
-        width: 100%;
-    }
+    // img {
+    //     width: 100%;
+    // }
 
     .navbar-nav > li {
         text-transform: uppercase;
@@ -113,4 +113,17 @@
         }
     }
 
+    @media only screen and (max-width: 640px) {
+        #sponsors {
+            img {
+                max-height: 50px;
+            }
+        }
+
+        #header {
+            .header-title {
+                font-size: 40px;
+            }
+        }
+    }
 }
