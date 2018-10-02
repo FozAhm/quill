@@ -4,5 +4,7 @@ app/client/build/
 app/client/plugins/
 *.log
 .env
+.env.config
+app.json
 .vscode/
 package-lock.json
