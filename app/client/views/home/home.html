@@ -1,24 +1,24 @@
 <div id="home" class="page bootstrap">
 
 	<!--Navigation-->
-	<nav class="navbar fixed-top navbar-light bg-light navbar-toggleable-sm navbar-expand-md navbar-expand-lg">
+	<nav class="navbar fixed-top navbar-light navbar-toggleable-sm navbar-expand-md navbar-expand-lg">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="#">WarHacks</a>
 			</div>
 
 			<!-- Collapse button -->
-			<button class="navbar-toggler toggler-example" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
-			 aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x"></i></span></button>
+			<button class="navbar-toggler toggler-example" ctype="button" data-toggle="collapse" data-target="#navbarSupportedContent1"
+			 aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation"><span class="dark-blue-text"><i class="fa fa-bars fa-1x" style="color: white;"></i></span></button>
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
 				<ul class="nav navbar-nav float-right text-right ml-auto">
 					<li class="nav-item">
 						<a class="page-scroll" href="#about">About</a>
 					</li>
-					<li class="nav-item">
+					<!--<li class="nav-item">
 						<a class="page-scroll" href="#schedule">Schedule</a>
-					</li>
+					</li>-->
 					<li class="nav-item">
 						<a class="page-scroll" href="#sponsors">Sponsors</a>
 					</li>
@@ -45,7 +45,15 @@
 		<!--Header Section-->
 		<section id="header">
 			<div class="container">
-				<img src="../../assets/images/WarHacks-teaser_banner.png">
+				<!--<img src="../../assets/images/WarHacks-teaser_banner.png">-->
+				<div class="header-title text-center lg-col-12 xs-col-12">WarHacks 2019</div>
+				<div class="header-subtitle text-center">March 17 | 12 hours | Montreal, QC</div>
+				<div class="header-subtitle text-center">
+					Registration is open from </br>
+					Saturday October 20 th , 2018 at 8AM EST</br>
+					until </br>
+					Sunday February 10 th , 2019 at 11:59 PM EST
+				</div>
 				<div class="text-center"><button type="button" class="btn btn-primary btn-lg" ng-show="!loginStatus" ng-click="homeregister();">REGISTER</button></div>
 			</div>
 		</section>
@@ -56,53 +64,26 @@
 				<div class="page-header">
 					<h1>about</h1>
 				</div>
-				<div>
-					<span>
-					This event is an introductory hardware Hackathon aimed at the younger generation of students looking to learn new technical
-					skills. There is no previous knowledge needed, upon arrival the competitors will be greeted with multiple different
-					workshop tutorials that will teach key skills for robotics building.
-					</span>
-					<span>
-					Subjects like programming, motor controlling, sensor
-					reading and much more will be covered during these tutorials. Later in teams, the competitors will put their creativity
-					to work and build a robot that will accomplish the given challenges. These challenges will be unveiled at the beginning
-					of the competition and will be in the form of three different objectives. Teams can pick to complete one, two or all
-					three tasks at hand to gain as many points as they can.
-					</span>
-					<span>
-					Students can register as teams or individually. If students register individually we will make sure to
-					pair them up with other students. This is a FREE Event. Competitors will be given a T-shirt, Lunch and Supper.
-					</span>
+				<div class="page-text text-justify">
+					WarHacks is a 12-hour hackathon on Sunday March 17, 2019 at the Concordia Conference Centre. All college students and high
+					school seniors are eligible to apply and attend. In teams of four participants will learn how to code and design a robot
+					and then get an opportunity to make their own custom robot which will compete against robots from other teams in a final
+					challenge. Students from any field of study are welcome as no experience is necessary to attend. The team whose robot
+					is the most successful will win an award and a cool prize to take home!
 				</div>
 			</div>
 		</section>
 
 		<!--Schedule Section-->
-		<section id="schedule">
+		<!-- <section id="schedule">
 			<div class="container">
 				<div class="page-header">
 					<h1>schedule</h1>
 				</div>
 				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-				</div>
-				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-				</div>
-				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 				</div>
 			</div>
-		</section>
+		</section> -->
 
 		<!--Sponsors Section-->
 		<section id="sponsors">
@@ -112,12 +93,13 @@
 				</div>
 				<div class="row text-center">
 					<span class="col-lg-12">
-						<img src="../../assets/images/ieee-logo-color.png">
-						<img src="../../assets/images/scs-logo-color.png">
+						<img src="../../assets/images/concordia-logo-color.png">
 					</span>
 					<span class="col-lg-12">
 						<img src="../../assets/images/eca-logo-color.png">
-						<img src="../../assets/images/concordia-logo-color.png"></span>
+						<img src="../../assets/images/ieee-short-logo-color.png">
+						<img src="../../assets/images/scs-logo-color.png">
+					</span>
 				</div>
 			</div>
 		</section>
@@ -128,23 +110,85 @@
 				<div class="page-header">
 					<h1>faq</h1>
 				</div>
-				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-				</div>
-				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-				</div>
-				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				<div class="page-text text-center row">
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							What is a hackathon?
+						</div>
+						<div class="answer">
+							Although many people associate the word hacking with illegal activities, a hackathon is completely the opposite. A hackathon
+							is an event where people can come together and share their ideas to create something fun while also learning and having
+							a great time.
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							When and where is the event?
+						</div>
+						<div class="answer">
+							Warhacks takes place Sunday March 17, 2019 at the Concordia University Conference Centre located on the 9 th floor of the
+							John Molson Building at the Sir George Williams Campus.
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							Can I participate?
+						</div>
+						<div class="answer">
+							If you are a college student or a high school senior, then you are eligible to attend! No experience is necessary to participate
+							in this hackathon. Just remember, if you are a minor on the day of the competition you will have get consent from a
+							parent/guardian.
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							Do I need a team?
+						</div>
+						<div class="answer">
+							Participants are expected to work in teams of four. If you already have a team you can indicate your team name and members
+							when registering. But don’t worry if you don’t have a team, there will be a team building session where you can meet
+							other participants and form a team with cool new people.
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							What should I bring?
+						</div>
+						<div class="answer">
+							We don’t ask you to bring anything because we will be providing you with all the equipment you need. However, it is suggested
+							that if you intend to program, you bring your own laptop already set up with the Arduino IDE so that you can immediately
+							start coding during the competition. You are also welcome to bring any hardware you want to experiment with at the
+							hackathon as long as it’s safe; contact us if you are unsure.
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							How much does it cost?
+						</div>
+						<div class="answer">
+							The event is completely free to attend. We want to make sure that anyone and everyone can attend. Just remember transportation
+							to and from our hackathon venue is still your responsibility. If you have any concerns reach out to us!
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							I have never been to a hackathon before, what should I do?
+						</div>
+						<div class="answer">
+							Do not worry if this is your first time, hackathons are a great place to learn and make new friends. Our hackathon is designed
+							for beginners, so we’ll be there at every step of the way. As long as you’re ready to learn you will have a great
+							time!
+						</div>
+					</div>
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							What is the code of conduct?
+						</div>
+						<div class="answer">
+							We expect all participants to be respectful to everyone and follow all the rules of the event which can be found in the rules
+							section.
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>
@@ -155,11 +199,20 @@
 				<div class="page-header">
 					<h1>contact</h1>
 				</div>
-				<div>
-					"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-					Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute
-					irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-					cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+				<div class="page-text">
+					<ul class="contact-list">
+						<li>
+							<i class="fas fa-phone"></i>&nbsp; 514-416-7587
+						</li>
+						<li>
+							<a href="https://www.facebook.com/ieeeconcordia" target="_blank">
+							<i class="fab fa-facebook-square" style="color: black;"></i></a> &nbsp; IEEE Concordia
+						</li>
+						<li>
+							<i class="fas fa-envelope"></i>&nbsp; contact@warhacks.ca
+						</li>
+					</ul>
+
 				</div>
 			</div>
 		</section>
