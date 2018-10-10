@@ -17,17 +17,19 @@
     }
 
     #header {
-        height: 600px;
+        height: 100%;
         width: 100%;
         background-color: #66b2ec;
         color: white;
+        margin-bottom: 20px;
+        padding-bottom: 5%;
 
         .header-title {
             letter-spacing: 2px;
             font-variant: small-caps;
             font-weight: bold;
             font-size: 50px;
-            margin-top: 15%;
+            margin-top: 5%;
         }
 
         .header-subtitle {
@@ -41,6 +43,14 @@
             border-color: white;
             margin-top: 20px;
             background-color: #66b2ec;
+        }
+
+        .header-logo {
+            background-image: url("../assets/images/warhacks-logo.svg");
+            background-repeat: no-repeat;
+            min-height: 230px;
+            background-size: 100% 100%;
+            margin-top: 5%;
         }
     }
 
@@ -63,10 +73,6 @@
     .container {
         padding: 20px;
     }
-
-    // img {
-    //     width: 100%;
-    // }
 
     .navbar-nav > li {
         text-transform: uppercase;
@@ -110,6 +116,12 @@
 
         .fa-phone {
             margin-right: 5px;
+        }
+    }
+
+    #header {
+        img {
+            width: 30%;
         }
     }
 
