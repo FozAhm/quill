@@ -108,10 +108,11 @@
     }
 
     #contact {
-        .contact-list li {
-            display: inline;
+        .contact-list{    
             margin-left: 15px;
             margin-right: 15px;
+            text-align: center;
+            padding-inline-start: unset;
         }
 
         .fa-phone {
