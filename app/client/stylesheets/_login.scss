@@ -7,22 +7,24 @@
 
   > .container {
     position: relative;
-    top: 50%;
+    // top: 50%;
+    // -webkit-transform: translateY(-50%);
+    // -ms-transform: translateY(-50%);
+    // transform: translateY(-50%);
 
-    -webkit-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
+    padding-top: 5%;
+    padding-bottom: 5%;
 
     > .content {
       max-width: 320px;
       margin: 0 auto;
 
       .logo {
-        max-width: 230px;
+        max-width: 150px;
         margin: .5rem auto 1rem auto;
         img {
-          width: 230px;
-          height: 230px;
+          width: 150px;
+          height: 150px;
           cursor: pointer;
         }
       }
