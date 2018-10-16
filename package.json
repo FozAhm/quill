@@ -42,6 +42,7 @@
     "postinstall": "bower install && gulp build"
   },
   "devDependencies": {
+    "@crystallize/elasticloadbalancer-express-force-https": "^2.2.1",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-concat": "^2.6.0",

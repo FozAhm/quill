@@ -2,6 +2,7 @@
 require('dotenv').load({silent: true});
 
 var express         = require('express');
+const forceHttps    = require('@crystallize/elasticloadbalancer-express-force-https');
 
 // Middleware!
 var bodyParser      = require('body-parser');
@@ -11,6 +12,7 @@ var morgan          = require('morgan');
 var mongoose        = require('mongoose');
 var port            = process.env.PORT || 3000;
 var database        = process.env.DATABASE || process.env.MONGODB_URI || "mongodb://localhost:27017";
+var https           = process.env.HTTPS || 'disabled';
 
 var settingsConfig  = require('./config/settings');
 var adminConfig     = require('./config/admin');
@@ -42,6 +44,11 @@ require('./app/server/routes/auth')(authRouter);
 app.use('/auth', authRouter);
 
 require('./app/server/routes')(app);
+
+// Use https if in production
+if (https == 'enabled'){
+    app.use(forceHttps());  
+}
 
 // listen (start app with node server.js) ======================================
 app.listen(port);
