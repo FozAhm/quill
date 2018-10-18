@@ -4,7 +4,7 @@
 	<nav class="navbar fixed-top navbar-light navbar-toggleable-sm navbar-expand-md navbar-expand-lg">
 		<div class="container-fluid">
 			<div class="navbar-header">
-				<a class="navbar-brand" href="#">WarHacks</a>
+				<a class="navbar-brand" href="#header"></a>
 			</div>
 
 			<!-- Collapse button -->
@@ -13,22 +13,22 @@
 
 			<div class="collapse navbar-collapse" id="navbarSupportedContent1">
 				<ul class="nav navbar-nav float-right text-right ml-auto">
-					<li class="nav-item">
+					<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
 						<a class="page-scroll" href="#about">About</a>
 					</li>
-					<!--<li class="nav-item">
+					<!--<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
 						<a class="page-scroll" href="#schedule">Schedule</a>
 					</li>-->
-					<li class="nav-item">
+					<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
 						<a class="page-scroll" href="#sponsors">Sponsors</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
 						<a class="page-scroll" href="#faq">FAQ</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
 						<a class="page-scroll" href="#contact">Contact</a>
 					</li>
-					<li class="nav-item">
+					<li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse">
 						<a href="#" ng-click="homeregister();">
 						<span ng-show="!loginStatus">Login</span>
 						<span ng-show="loginStatus">Dashboard</span>
@@ -46,15 +46,22 @@
 		<section id="header">
 			<div class="container">
 				<div class="header-logo"></div>
-				<div class="header-title text-center lg-col-12 xs-col-12">WarHacks 2019</div>
-				<div class="header-subtitle text-center">March 17 | 12 hours | Montreal, QC</div>
-				<div class="header-subtitle text-center">
-					Registration is open from </br>
-					Saturday October 20 th , 2018 at 8AM EST</br>
-					until </br>
-					Sunday February 10 th , 2019 at 11:59 PM EST
+				<div class="header-text">
+					<div class="header-title text-center lg-col-12 xs-col-12">WarHacks 2019</div>
+					<div class="header-subtitle text-center">March 17 | 12 hours | Montreal, QC</div>
+					<div class="header-subtitle text-center">
+						Registration is open from </br>
+						Saturday October 20 th , 2018 at 8AM EST</br>
+						until </br>
+						Sunday February 10 th , 2019 at 11:59 PM EST
+					</div>
+					<div class="text-center">
+						<button type="button" class="btn btn-primary btn-lg" ng-show="!loginStatus" ng-click="homeregister();">
+							REGISTER
+						</button>
+					</div>
 				</div>
-				<div class="text-center"><button type="button" class="btn btn-primary btn-lg" ng-show="!loginStatus" ng-click="homeregister();">REGISTER</button></div>
+
 			</div>
 		</section>
 
@@ -93,12 +100,12 @@
 				</div>
 				<div class="row text-center">
 					<span class="col-lg-12">
-						<img src="../../assets/images/concordia-logo-color.png">
+						<a href="https://www.concordia.ca "><img src="../../assets/images/concordia-logo-color.png"></a>
 					</span>
 					<span class="col-lg-12">
-						<img src="../../assets/images/eca-logo-color.png">
-						<img src="../../assets/images/ieee-short-logo-color.png">
-						<img src="../../assets/images/scs-logo-color.png">
+						<a href="http://ecaconcordia.ca "><img src="../../assets/images/eca-logo-color.png"></a>
+						<a href="http://ieee.concordia.ca"><img src="../../assets/images/ieee-short-logo-color.png"></a>
+						<a href="https://scsconcordia.com "><img src="../../assets/images/scs-logo-color.png"></a>
 					</span>
 				</div>
 			</div>
@@ -110,7 +117,9 @@
 				<div class="page-header">
 					<h1>faq</h1>
 				</div>
+
 				<div class="page-text text-center row">
+					<!--first column-->
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 						<div class="question">
 							What is a hackathon?
@@ -120,27 +129,6 @@
 							is an event where people can come together and share their ideas to create something fun while also learning and having
 							a great time.
 						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<div class="question">
-							When and where is the event?
-						</div>
-						<div class="answer">
-							Warhacks takes place Sunday March 17, 2019 at the Concordia University Conference Centre located on the 9 th floor of the
-							John Molson Building at the Sir George Williams Campus.
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<div class="question">
-							Can I participate?
-						</div>
-						<div class="answer">
-							If you are a college student or a high school senior, then you are eligible to attend! No experience is necessary to participate
-							in this hackathon. Just remember, if you are a minor on the day of the competition you will have get consent from
-							a parent/guardian.
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 						<div class="question">
 							Do I need a team?
 						</div>
@@ -149,28 +137,6 @@
 							when registering. But don’t worry if you don’t have a team, there will be a team building session where you can meet
 							other participants and form a team with cool new people.
 						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<div class="question">
-							What should I bring?
-						</div>
-						<div class="answer">
-							We don’t ask you to bring anything because we will be providing you with all the equipment you need. However, it is suggested
-							that if you intend to program, you bring your own laptop already set up with the Arduino IDE so that you can immediately
-							start coding during the competition. You are also welcome to bring any hardware you want to experiment with at the
-							hackathon as long as it’s safe; contact us if you are unsure.
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
-						<div class="question">
-							How much does it cost?
-						</div>
-						<div class="answer">
-							The event is completely free to attend. We want to make sure that anyone and everyone can attend. Just remember transportation
-							to and from our hackathon venue is still your responsibility. If you have any concerns reach out to us!
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
 						<div class="question">
 							I have never been to a hackathon before, what should I do?
 						</div>
@@ -180,13 +146,48 @@
 							time!
 						</div>
 					</div>
+					<!--second column-->
 					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							When and where is the event?
+						</div>
+						<div class="answer">
+							Warhacks takes place Sunday March 17, 2019 at the Concordia University Conference Centre located on the 9 th floor of the
+							John Molson Building at the Sir George Williams Campus.
+						</div>
+						<div class="question">
+							What should I bring?
+						</div>
+						<div class="answer">
+							We don’t ask you to bring anything because we will be providing you with all the equipment you need. However, it is suggested
+							that if you intend to program, you bring your own laptop already set up with the Arduino IDE so that you can immediately
+							start coding during the competition. You are also welcome to bring any hardware you want to experiment with at the
+							hackathon as long as it’s safe; contact us if you are unsure.
+						</div>
 						<div class="question">
 							What is the code of conduct?
 						</div>
 						<div class="answer">
-							We expect all participants to be respectful to everyone and follow all the rules of the event which can be found in the rules
-							section.
+							We expect all participants to be respectful to everyone and follow all the rules of the event which can be found
+							<a href="../../assets/Rules.pdf" target="_blank">here</a>.
+						</div>
+					</div>
+					<!--third column-->
+					<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+						<div class="question">
+							Can I participate?
+						</div>
+						<div class="answer">
+							If you are a college student or a high school senior, then you are eligible to attend! No experience is necessary to participate
+							in this hackathon. Just remember, if you are a minor on the day of the competition you will have get consent from
+							a parent/guardian.
+						</div>
+						<div class="question">
+							How much does it cost?
+						</div>
+						<div class="answer">
+							The event is completely free to attend. We want to make sure that anyone and everyone can attend. Just remember transportation
+							to and from our hackathon venue is still your responsibility. If you have any concerns reach out to us!
 						</div>
 					</div>
 				</div>
