@@ -6,6 +6,9 @@
     }
     .button {
       margin-top: 12px;
+      &.primary{
+        background: $login-color;
+      }
     }
     .header {
       font-size: 1.2em;
