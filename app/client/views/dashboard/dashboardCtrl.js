@@ -10,7 +10,7 @@ angular.module('reg')
     'UserService',
     'EVENT_INFO',
     'DASHBOARD',
-    function($rootScope, $scope, $sce, currentUser, settings, Utils, AuthService, UserService, EVENT_INFO, DASHBOARD){
+    function ($rootScope, $scope, $sce, currentUser, settings, Utils, AuthService, UserService, EVENT_INFO, DASHBOARD) {
       var Settings = settings.data;
       var user = currentUser.data;
       $scope.user = user;
@@ -34,7 +34,7 @@ angular.module('reg')
       // Is it past the user's confirmation time?
       var pastConfirmation = $scope.pastConfirmation = Utils.isAfter(user.status.confirmBy);
 
-      $scope.dashState = function(status){
+      $scope.dashState = function (status) {
         var user = $scope.user;
         switch (status) {
           case 'unverified':
@@ -67,13 +67,62 @@ angular.module('reg')
 
       $scope.showWaitlist = !regIsOpen && user.status.completedProfile && !user.status.admitted;
 
-      $scope.resendEmail = function(){
+      $scope.resendEmail = function () {
+        console.log('hi');
         AuthService
           .resendVerificationEmail()
-          .then(function(){
+          .then(function () {
             sweetAlert('Your email has been sent.');
           });
       };
+
+      $scope.uploadConsentForm = function () {
+        console.log(angular.element('#fileToUpload'));
+        var fd = undefined;
+
+        console.log(AWS);
+        if (angular.element('#fileToUpload')[0].files.length === 0) {
+          return;
+        }
+
+        if (angular.element('#fileToUpload')[0]) {
+          var files = angular.element('#fileToUpload')[0].files;
+
+          fd = new FormData();
+
+          // loop if multiples files
+          for (var x = 0; x < files.length; x++) {
+            fd.append("file" + x, files[x]);
+          }
+          console.log(fd.entries());
+          for (var pair of fd.entries()) {
+            console.log(pair[0] + ', ' + pair[1].size);
+          }
+
+          //    AWS.config.region = 'us-east-1'; // Region
+          //    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+          //        IdentityPoolId: 'us-east-1:eaec5dd2-98ce-4cf8-9e04-a202cf3aff25',
+          //    });
+
+          //    AWS.config.credentials.get(function(err) {
+          //     if (err) alert(err);
+          //     console.log(AWS.config.credentials);
+          // });
+
+          //TODO: upload fd to S3
+          //   let API_URL = 'THE BACKEND URL'
+          //   $http.put(API_URL + "/upload/" + fd, {
+          //     transformRequest: angular.identity, // check??
+          //     headers: { 'Content-Type': undefined } // could be anything?
+          //   })
+          //     .success(function () {
+          //       deferred.resolve()
+          //     })
+          //     .error(function () {
+          //       deferred.reject(error);
+          //     });
+        }
+      }
 
 
       // -----------------------------------------------------
@@ -84,7 +133,7 @@ angular.module('reg')
       $scope.confirmationText = $sce.trustAsHtml(converter.makeHtml(Settings.confirmationText));
       $scope.waitlistText = $sce.trustAsHtml(converter.makeHtml(Settings.waitlistText));
 
-      $scope.declineAdmission = function(){
+      $scope.declineAdmission = function () {
 
         swal({
           title: "Whoa!",
@@ -94,14 +143,14 @@ angular.module('reg')
           confirmButtonColor: "#DD6B55",
           confirmButtonText: "Yes, I can't make it.",
           closeOnConfirm: true
-          }, function(){
+        }, function () {
 
-            UserService
-              .declineAdmission(user._id)
-              .success(function(user){
-                $rootScope.currentUser = user;
-                $scope.user = user;
-              });
+          UserService
+            .declineAdmission(user._id)
+            .success(function (user) {
+              $rootScope.currentUser = user;
+              $scope.user = user;
+            });
         });
       };
 
