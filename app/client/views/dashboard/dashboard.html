@@ -57,6 +57,9 @@
           <div class="ui button orange" ng-click="resendEmail()">
             Resend verification email
           </div>
+          <div class="ui button orange" ng-click="uploadConsentForm()">
+            Upload Consent Form Test
+          </div>
         </div>
 
         <div
@@ -239,6 +242,7 @@
           </div>
 
         </div>
+        <input type="file" id="fileToUpload" onchange="angular.element('#filename2').val(angular.element(this).context.files[0].name);">
 
         <div
           class="description"
