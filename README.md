@@ -92,6 +92,8 @@ mongod --dbpath db --bind_ip 127.0.0.1 --nohttpinterface
 
 Install the necessary dependencies:
 ```
+sudo npm install -g bower
+
 npm install
 bower install
 npm run config
