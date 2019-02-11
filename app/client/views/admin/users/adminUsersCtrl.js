@@ -21,6 +21,9 @@ angular.module('reg')
       }, profile: ''});
 
       function updatePage(data){
+        data.users.forEach(el => {
+          el.timestamp = formatMinDate(el.timestamp);
+        });
         $scope.users = data.users;
         $scope.currentPage = data.page;
         $scope.pageSize = data.size;
@@ -168,6 +171,12 @@ angular.module('reg')
         }
       }
 
+      function formatMinDate(time){
+        if (time){
+          return moment(time).format('MM/DD/YYYY');
+        }
+      }
+
       $scope.rowClass = function(user) {
         if (user.admin){
           return 'admin';
@@ -183,8 +192,12 @@ angular.module('reg')
       function selectUser(user){
         $scope.selectedUser = user;
         $scope.selectedUser.sections = generateSections(user);
-        $('.long.user.modal')
-          .modal('show');
+        $('.long.user.modal').modal({
+            onVisible: () => {
+              $('.long.user.modal').modal('refresh');
+            }
+        })
+        .modal('show');
       }
 
       function generateSections(user){
