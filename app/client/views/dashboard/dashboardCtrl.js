@@ -94,33 +94,36 @@ angular.module('reg')
           for (var x = 0; x < files.length; x++) {
             fd.append("file" + x, files[x]);
           }
+          console.log('hi');
           console.log(fd.entries());
           for (var pair of fd.entries()) {
             console.log(pair[0] + ', ' + pair[1].size);
           }
 
-          //    AWS.config.region = 'us-east-1'; // Region
-          //    AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-          //        IdentityPoolId: 'us-east-1:eaec5dd2-98ce-4cf8-9e04-a202cf3aff25',
-          //    });
+             AWS.config.region = 'us-east-1'; // Region
+             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                 IdentityPoolId: 'us-east-1:eaec5dd2-98ce-4cf8-9e04-a202cf3aff25',
+                 RoleArn: 'arn:aws:iam::624863256547:role/WarhacksConsentForm',
+                 AccountId: '624863256547'
+             });
 
-          //    AWS.config.credentials.get(function(err) {
-          //     if (err) alert(err);
-          //     console.log(AWS.config.credentials);
-          // });
-
-          //TODO: upload fd to S3
-          //   let API_URL = 'THE BACKEND URL'
-          //   $http.put(API_URL + "/upload/" + fd, {
-          //     transformRequest: angular.identity, // check??
-          //     headers: { 'Content-Type': undefined } // could be anything?
-          //   })
-          //     .success(function () {
-          //       deferred.resolve()
-          //     })
-          //     .error(function () {
-          //       deferred.reject(error);
-          //     });
+             AWS.config.credentials.get(function(err) {
+              if (err) alert(err);
+              console.log(AWS.config.credentials);
+          });
+          
+          // TODO: upload fd to S3
+            // let API_URL = 'THE BACKEND URL'
+            // $http.put(API_URL + "/upload/" + fd, {
+            //   transformRequest: angular.identity, // check??
+            //   headers: { 'Content-Type': undefined } // could be anything?
+            // })
+            //   .success(function () {
+            //     deferred.resolve()
+            //   })
+            //   .error(function () {
+            //     deferred.reject(error);
+            //   });
         }
       }
 
