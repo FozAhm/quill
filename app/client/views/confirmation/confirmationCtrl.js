@@ -57,7 +57,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
             let consentReminder =
                 "\n\n Reminder: Don't forget to upload your liability waiver form if you haven't already!";
             let uploadStatus = "";
-            if (uploadStatus != null) {
+            if (typeof u !== 'undefined') {
                 uploadStatus = u ? '\n Your liability waiver form upload was successful.' : '\n Your liability waiver form upload has failed.';
             }
 
