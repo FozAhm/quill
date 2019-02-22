@@ -8,3 +8,4 @@ app/client/plugins/
 app.json
 .vscode/
 package-lock.json
+hidden.js
