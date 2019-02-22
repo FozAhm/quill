@@ -56,7 +56,10 @@ angular.module("reg").controller("ConfirmationCtrl", [
         function _updateUser(u) {
             let consentReminder =
                 "\n\n Reminder: Don't forget to upload your liability waiver form if you haven't already!";
-            let uploadStatus = u ? '\n Your liability waiver form upload was successful.' : '\n Your liability waiver form upload has failed.';
+            let uploadStatus = "";
+            if (uploadStatus != null) {
+                uploadStatus = u ? '\n Your liability waiver form upload was successful.' : '\n Your liability waiver form upload has failed.';
+            }
 
             var confirmation = $scope.user.confirmation;
             // Get the dietary restrictions as an array
@@ -73,8 +76,8 @@ angular.module("reg").controller("ConfirmationCtrl", [
                     sweetAlert(
                         {
                             title: "Woo!",
-                            text: "You're confirmed! " + uploadStatus + u ? '' : consentReminder,
-                            type: u ? "success" : "warning",
+                            text: "You're confirmed! " + uploadStatus + consentReminder,
+                            type: (u || u == null) ? "success" : "warning",
                             confirmButtonColor: "#F28123"
                         },
                         function() {
