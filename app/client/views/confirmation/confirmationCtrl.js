@@ -6,12 +6,13 @@ angular.module('reg')
     'currentUser',
     'Utils',
     'UserService',
-    function($scope, $rootScope, $state, currentUser, Utils, UserService){
+    'HIDDEN',
+    function($scope, $rootScope, $state, currentUser, Utils, UserService, HIDDEN){
 
       // Set up the user
       var user = currentUser.data;
       $scope.user = user;
-
+      $scope.HIDDEN = HIDDEN;
       $scope.pastConfirmation = Date.now() > user.status.confirmBy;
 
       $scope.formatTime = Utils.formatTime;
@@ -44,6 +45,8 @@ angular.module('reg')
       // -------------------------------
 
       function _updateUser(e){
+        let consentReminder = "\n Reminder: Don't forget to upload your liability waiver form if you haven't already!";
+      
         var confirmation = $scope.user.confirmation;
         // Get the dietary restrictions as an array
         var drs = [];
@@ -59,7 +62,7 @@ angular.module('reg')
           .success(function(data){
             sweetAlert({
               title: "Woo!",
-              text: "You're confirmed!",
+              text: "You're confirmed!" + consentReminder,
               type: "success",
               confirmButtonColor: "#F28123"
             }, function(){
@@ -126,8 +129,79 @@ angular.module('reg')
 
       $scope.submitForm = function(){
         if ($('.ui.form').form('is valid')){
+          _uploadConsentForm();
           _updateUser();
         }
       };
 
+      function _uploadConsentForm() {
+        console.log(angular.element("#fileToUpload"));
+        var fd = undefined;
+
+        if (angular.element("#fileToUpload")[0].files.length === 0) {
+          console.log('Consent form not found');
+            return;
+        }
+
+        if (angular.element("#fileToUpload")[0]) {
+            var files = angular.element("#fileToUpload")[0].files;
+
+            fd = new FormData();
+            const userFileName = user.profile.name;
+            // loop if multiples files
+            for (var x = 0; x < files.length; x++) {
+                var patt1 = /\.[0-9a-z]+$/i;
+                const fileExtension = files[x]["name"].match(patt1);
+
+                if (fileExtension === ''){
+                  alert('File uploaded must be a PDF');
+                  return;
+                }
+
+                fd.append(
+                    "file" + x,
+                    files[x],
+                    userFileName + fileExtension
+                );
+            }
+
+
+            AWS.config.region = $scope.HIDDEN.AWS_REGION; // Region
+            AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+                IdentityPoolId: $scope.HIDDEN.AWS_CONFIG_POOL_ID,
+                RoleArn: $scope.HIDDEN.AWS_CONFIG_ROLE_ARN,
+                AccountId: $scope.HIDDEN.AWS_ACCOUNT_ID,
+            });
+            AWS.config.update({
+                accessKeyId: $scope.HIDDEN.AWS_ACCESS_KEY_ID,
+                secretAccessKey: $scope.HIDDEN.AWS_SECRET_ACCESS_KEY,
+            });
+
+            const Bucket = $scope.HIDDEN.AWS_BUCKET;
+            const bucketUrl = `https://s3.amazonaws.com/${Bucket}`;
+
+            const s3 = new AWS.S3({
+                apiVersion: "2006-03-01",
+                params: { Bucket }
+            });
+
+            let file = fd.get("file0");
+            if (!file) return;
+
+            //build the params needed for the putObject call
+            const params = {
+                Key: file.name,
+                Body: file,
+                ACL: "public-read" //this makes the object readable
+            };
+
+            s3.putObject(params, function(err, data) {
+                if (err) {
+                    console.log('There was an error uploading your document');
+                } else {
+                    console.log("Upload of consent form was successful");
+                }
+            });
+        }
+    };
     }]);

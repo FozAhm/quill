@@ -120,8 +120,13 @@
             <p>
               <a
                 target="_blank"
-                href="https://go.hackmit.org/liability-waiver">
-                Liability Waiver
+                href="/app/client/assets/VPS-8_waiver_adult.pdf">
+                Liability Waiver for 18+
+              </a> <br>
+              <a
+                target="_blank"
+                href="/app/client/assets/VPS-8_waiver_underage.pdf">
+                Liability Waiver for minors
               </a>
             </p>
             <p>
@@ -134,7 +139,8 @@
                    name="signatureLiabilityWaiver"
                    placeholder="Your Full Legal Name"
                    ng-model="user.confirmation.signatureLiability">
-          </div>
+                   <input type="file" id="fileToUpload" onchange="angular.element('#filename2').val(angular.element(this).context.files[0].name);">
+            </div>
 
           <div class="field">
             <label> Photo Release </label>
