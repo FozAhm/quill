@@ -120,31 +120,23 @@
             <p>
               <a
                 target="_blank"
-                href="https://go.hackmit.org/liability-waiver">
-                Liability Waiver
+                href="../../assets/VPS-8_waiver_adult.pdf">
+                Liability Waiver for 18+
+              </a> <br>
+              <a
+                target="_blank"
+                href="../../assets/VPS-8_waiver_underage.pdf">
+                Liability Waiver for minors
               </a>
             </p>
             <p>
-              For legal reasons, our university asks that you read and accept the terms of our liability waiver. Again, as we mentioned in the original lottery application - you <strong> must </strong> be 18 years or older or an MIT undergraduate by the day of the event, or <strong> we will refuse you admission at the door. We will be checking ID. </strong>
+              For legal reasons, our university asks that you read and accept the terms of our liability waiver. This liability waiver must be signed by a legal guardian for those under 18.<b> Everyone must upload the liability waiver upon their confirmation</b>. </strong>
             </p>
-            <p>
-              By writing my name below, I affirm that I have read and accepted the terms of the liability waiver above, and will be either an MIT undergraduate or 18 years or older at the time of the event.
-            </p>
-            <input type="text"
-                   name="signatureLiabilityWaiver"
-                   placeholder="Your Full Legal Name"
-                   ng-model="user.confirmation.signatureLiability">
-          </div>
+            <input type="file" id="fileToUpload" onchange="angular.element('#filename2').val(angular.element(this).context.files[0].name);">
+            </div>
 
           <div class="field">
             <label> Photo Release </label>
-            <p>
-              <a
-                target="_blank"
-                href="https://go.hackmit.org/photo-release">
-                Photo Release
-              </a>
-            </p>
             <p>
               Signing this photo release means if we take photos or photos of you, we can share it with the world.
             </p>
@@ -160,14 +152,7 @@
           <div class="field">
             <label> Code of Conduct </label>
             <p>
-              <a
-                target="_blank"
-                href="https://go.hackmit.org/code-of-conduct">
-                Hacker Code of Conduct
-              </a>
-            </p>
-            <p>
-              It is extremely important to us that attendees follow a set of guidelines to make the event fun for everyone involved. Please read through and make sure you understand what we will be expecting of you.
+              It is extremely important to us that attendees follow a set of guidelines to make the event fun for everyone involved. You can find these guidelines on the homepage. Please read through and make sure you understand what we will be expecting of you.
             </p>
             <p>
               By writing my name below, I affirm that I have read and will abide by the code of conduct detailed above.
