@@ -75,8 +75,10 @@ angular.module('reg')
         return $http.get(base + 'stats');
       },
 
-      admitUser: function(id){
-        return $http.post(base + id + '/admit');
+      admitUser: function(id, email){
+        return $http.post(base + id + '/admit', {
+          email: email,
+        });
       },
 
       checkIn: function(id){
