@@ -219,7 +219,6 @@ controller.sendAcceptanceEmail = function(email, callback){
       console.log(info.message);
     }
     if (callback){
-      console.log('here');
       callback(err, info);
     }
   });
