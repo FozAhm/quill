@@ -194,4 +194,34 @@ controller.sendPasswordChangedEmail = function(email, callback){
 
 };
 
+/**
+ * Send an acceptance email
+ */
+
+controller.sendAcceptanceEmail = function(email, callback){
+  var options = {
+    to: email,
+    subject: "["+HACKATHON_NAME+"] - You have been accepted to WarHacks 2019!"
+  };
+
+  var locals = {
+    title: 'WarHacks 2019 Acceptance',
+    body: `Congratulations, you have been accepted to WarHacks 2019! Please visit your dashboard
+           to finalize your confirmation information. Also note that we require
+           every participant to upload a signed liability waiver as part of the confirmation.`,
+  };
+
+  sendOne('email-basic', options, locals, function(err, info){
+    if (err){
+      console.log(err);
+    }
+    if (info){
+      console.log(info.message);
+    }
+    if (callback){
+      callback(err, info);
+    }
+  });
+}
+
 module.exports = controller;

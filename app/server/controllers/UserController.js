@@ -630,7 +630,7 @@ UserController.resetPassword = function(token, password, callback){
  * @param  {String}   user     User doing the admitting
  * @param  {Function} callback args(err, user)
  */
-UserController.admitUser = function(id, user, callback){
+UserController.admitUser = function(id, user, email, callback){
   Settings.getRegistrationTimes(function(err, times){
     User
       .findOneAndUpdate({
@@ -645,7 +645,12 @@ UserController.admitUser = function(id, user, callback){
       }, {
         new: true
       },
-      callback);
+      (err, res) => {
+        Mailer.sendAcceptanceEmail(email, (mailErr, info)=>{
+          if (mailErr) console.log(mailErr);
+          callback(err, res);
+        });
+      });
   });
 };
 
