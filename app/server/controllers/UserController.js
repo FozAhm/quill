@@ -751,4 +751,71 @@ UserController.getStats = function(callback){
   return callback(null, Stats.getUserStats());
 };
 
+UserController.sendMassEmail = function (adminEmail, filter, subject, title, text, callback) {
+  var emails = [];
+
+  var getEmails = new Promise((resolve, reject) => {
+    if (filter === 'all') {
+      User.find({ "verified": true }, (err, res) => {
+        emails = buildEmailList(res);
+        resolve(emails);
+      });
+
+    } else if (filter === 'confirmed') {
+      User.find({ "status.confirmed": true }, (err, res) => {
+        if (err || res.length === 0) {
+          reject(Error('No emails'));
+        } else {
+          emails = buildEmailList(res);
+          resolve(emails);
+        }
+      });
+      return;
+    } else if (filter === 'admitted') {
+      User.find({ "status.admitted": true }, (err, res) => {
+        if (err || res.length === 0) {
+          reject(Error('No emails'));
+        } else {
+          emails = buildEmailList(res);
+          resolve(emails);
+        }
+      });
+    } else if (filter === 'waitlisted') {
+      User.find({
+        "status.admitted": false,
+        "status.completedProfile": true,
+      }, (err, res) => {
+        if (err || res.length === 0) {
+          reject(Error('No emails'));
+        } else {
+          emails = buildEmailList(res);
+          resolve(emails);
+        }
+      });
+    }
+  });
+
+
+  getEmails.then((emails) => {
+    if (emails.length === 0) {
+      callback(new Error('No emails found'), null);
+    } else {
+      Mailer.sendMassAdminEmail(adminEmail, emails, subject, title, text, (err, info) => {
+        callback(null, emails);
+      });
+    }
+  }, (err) => {
+    callback(err.message);
+  });
+}
+
+function buildEmailList(users) {
+  var arr = [];
+  for (user of users) {
+    if (user.email !== 'admin@example.com') {
+      arr.push(user.email);
+    }
+  }
+  return arr;
+}
 module.exports = UserController;

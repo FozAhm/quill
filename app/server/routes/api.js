@@ -403,5 +403,20 @@ module.exports = function(router) {
     var allowMinors = req.body.allowMinors;
     SettingsController.updateField('allowMinors', allowMinors, defaultResponse(req, res));
   });
+  
+  /**
+   *  [ADMIN ONLY]
+   *  Send mass email
+   * 
+   */
+  router.post('/sendMassEmail', function(req, res){    
+    var adminEmail = req.body.adminEmail;
+    var title = req.body.title;
+    var text = req.body.text;
+    var subject = req.body.subject;
+    var filter = req.body.filter;
+    console.log(filter);
+    UserController.sendMassEmail(adminEmail, filter, subject, title, text, defaultResponse(req, res));
+  });
 
 };
