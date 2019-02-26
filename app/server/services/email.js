@@ -78,6 +78,51 @@ function sendOne(templateName, options, data, callback){
 }
 
 /**
+ * Sends mass email to bcc list of emails
+ * @param {*} templateName 
+ * @param {*} options 
+ * @param {*} data 
+ * @param {*} callback 
+ */
+function sendMass(templateName, options, data, callback){
+
+  if (NODE_ENV === "dev") {
+    console.log(templateName);
+    console.log(JSON.stringify(data, "", 2));
+  }
+
+  emailTemplates(templatesDir, function(err, template){
+    if (err) {
+      return callback(err);
+    }
+
+    data.emailHeaderImage = EMAIL_HEADER_IMAGE;
+    data.emailAddress = EMAIL_ADDRESS;
+    data.hackathonName = HACKATHON_NAME;
+    data.twitterHandle = TWITTER_HANDLE;
+    data.facebookHandle = FACEBOOK_HANDLE;
+    template(templateName, data, function(err, html, text){
+      if (err) {
+        return callback(err);
+      }
+
+      transporter.sendMail({
+        from: EMAIL_CONTACT,
+        to: options.to,
+        bcc: options.bcc,
+        subject: options.subject,
+        html: html,
+        text: text
+      }, function(err, info){
+        if(callback){
+          callback(err, info);
+        }
+      });
+    });
+  });
+}
+
+/**
  * Send a verification email to a user, with a verification token to enter.
  * @param  {[type]}   email    [description]
  * @param  {[type]}   token    [description]
@@ -212,6 +257,31 @@ controller.sendAcceptanceEmail = function(email, callback){
   };
 
   sendOne('email-basic', options, locals, function(err, info){
+    if (err){
+      console.log(err);
+    }
+    if (info){
+      console.log(info.message);
+    }
+    if (callback){
+      callback(err, info);
+    }
+  });
+}
+
+controller.sendMassAdminEmail = function(adminEmail, emails, subject, title, text, callback){
+  var options = {
+    to: adminEmail,
+    bcc: emails,
+    subject: subject
+  };
+
+  var locals = {
+    title: title,
+    body: text,
+  };
+
+  sendMass('email-basic', options, locals, function(err, info){
     if (err){
       console.log(err);
     }

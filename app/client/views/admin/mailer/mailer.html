@@ -1,0 +1,27 @@
+<br>
+<h3>Send a mass email!</h3>
+<div class="ui form segment">
+    <div class="field">
+            <label>Receivers</label>
+            <select class="ui dropdown" name="to" ng-model="email.to">
+                <option value="">Select receivers</option>
+                <option value="all">All users</option>
+                <option value="admitted">Admitted Users</option>
+                <option value="confirmed">Confirmed Users</option>
+                <option value="waitlisted">Waitlisted Users</option>
+            </select>
+    </div>
+    <div class="field">
+        <label>Title</label>
+        <textarea rows="1" name="title" ng-model="email.title"></textarea>
+    </div>
+    <div class="field">
+        <label>Subject</label>
+        <textarea rows="1" name="subject" ng-model="email.subject"></textarea>
+    </div>
+    <div class="field">
+        <label>Message</label>
+        <textarea name="message" ng-model="email.message"></textarea>
+    </div>
+    <button class="ui button" ng-click="sendEmail()">Send email</button>
+</div>

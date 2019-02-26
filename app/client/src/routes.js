@@ -178,6 +178,16 @@ angular.module('reg')
         data: {
           requireLogin: false
         }
+      })
+      .state("app.admin.mailer",{
+        url: "/admin/mailer",
+        templateUrl:"views/admin/mailer/mailer.html",
+        controller: "MailerCtrl",
+        resolve: {
+          currentUser: function(UserService){
+            return UserService.getCurrentUser();
+          }
+        }
       });
 
     $locationProvider.html5Mode({
