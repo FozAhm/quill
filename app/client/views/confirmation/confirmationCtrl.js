@@ -6,7 +6,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
     "Utils",
     "UserService",
     "HIDDEN",
-    function(
+    function (
         $scope,
         $rootScope,
         $state,
@@ -20,6 +20,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
         $scope.user = user;
         $scope.HIDDEN = HIDDEN;
         $scope.pastConfirmation = Date.now() > user.status.confirmBy;
+        $scope.isConfirmed = user.status.admitted && user.status.confirmed && !user.status.declined;
 
         $scope.formatTime = Utils.formatTime;
 
@@ -40,7 +41,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
         };
 
         if (user.confirmation.dietaryRestrictions) {
-            user.confirmation.dietaryRestrictions.forEach(function(
+            user.confirmation.dietaryRestrictions.forEach(function (
                 restriction
             ) {
                 if (restriction in dietaryRestrictions) {
@@ -64,7 +65,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
             var confirmation = $scope.user.confirmation;
             // Get the dietary restrictions as an array
             var drs = [];
-            Object.keys($scope.dietaryRestrictions).forEach(function(key) {
+            Object.keys($scope.dietaryRestrictions).forEach(function (key) {
                 if ($scope.dietaryRestrictions[key]) {
                     drs.push(key);
                 }
@@ -72,7 +73,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
             confirmation.dietaryRestrictions = drs;
 
             UserService.updateConfirmation(user._id, confirmation)
-                .success(function(data) {
+                .success(function (data) {
                     sweetAlert(
                         {
                             title: "Woo!",
@@ -80,12 +81,12 @@ angular.module("reg").controller("ConfirmationCtrl", [
                             type: (u || u == null) ? "success" : "warning",
                             confirmButtonColor: "#F28123"
                         },
-                        function() {
+                        function () {
                             $state.go("app.dashboard");
                         }
                     );
                 })
-                .error(function(res) {
+                .error(function (res) {
                     sweetAlert("Uh oh!", "Something went wrong.", "error");
                 });
         }
@@ -143,7 +144,24 @@ angular.module("reg").controller("ConfirmationCtrl", [
             });
         }
 
-        $scope.submitForm = function() {
+        $scope.isFormComplete = function () {
+            var confirmation = $scope.user.confirmation;
+            var files = angular.element("#fileToUpload")[0].files;
+
+            if (
+                confirmation.major
+                && confirmation.phoneNumber
+                && confirmation.shirtSize
+                && confirmation.signaturePhotoRelease
+                && confirmation.signatureCodeOfConduct
+                && files.length === 1
+            ) {
+                return true;
+            }
+            return false;
+        }
+
+        $scope.submitForm = function () {
             if ($(".ui.form").form("is valid")) {
                 _uploadConsentForm((uploadResult) => {
                     _updateUser(uploadResult);
@@ -196,7 +214,7 @@ angular.module("reg").controller("ConfirmationCtrl", [
                 });
 
                 const Bucket = $scope.HIDDEN.AWS_BUCKET;
-                
+
                 const s3 = new AWS.S3({
                     apiVersion: "2006-03-01",
                     params: { Bucket }
@@ -214,10 +232,10 @@ angular.module("reg").controller("ConfirmationCtrl", [
                     ACL: "public-read" //this makes the object readable
                 };
 
-                s3.putObject(params, function(err, data) {
+                s3.putObject(params, function (err, data) {
                     if (err) {
                         console.log(
-                            "There was an error uploading your document"                           
+                            "There was an error uploading your document"
                         );
                         callback(false);
                         return;
