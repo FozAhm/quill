@@ -800,9 +800,36 @@ UserController.sendMassEmail = function (adminEmail, filter, subject, title, tex
     if (emails.length === 0) {
       callback(new Error('No emails found'), null);
     } else {
-      Mailer.sendMassAdminEmail(adminEmail, emails, subject, title, text, (err, info) => {
-        callback(null, emails);
-      });
+
+      //build chunks of emails max size 40
+      var arraysOfEmails = []
+      var maxSize = 40;
+
+      while (emails.length > 0) {
+        arraysOfEmails.push(emails.splice(0, maxSize));
+      }
+
+      var emailPromises = [];
+      for (emailArray of arraysOfEmails) {
+        emailPromises.push(new Promise((resolve, reject) => {
+          Mailer.sendMassAdminEmail(adminEmail, emailArray, subject, title, text, (err, info) => {
+            if (err) {
+              reject(err);
+            }
+            resolve(info);
+          });
+        }));
+      }
+
+      Promise.all(emailPromises)
+        .then((infos) => {
+          console.log(infos);
+          callback(null, emails);
+        })
+        .catch(err => {
+          console.log(err);
+          callback(err);
+        });
     }
   }, (err) => {
     callback(err.message);
