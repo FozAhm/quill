@@ -772,7 +772,7 @@ UserController.sendMassEmail = function (adminEmail, filter, subject, title, tex
       });
       return;
     } else if (filter === 'admitted') {
-      User.find({ "status.admitted": true }, (err, res) => {
+      User.find({ "status.admitted": true, "status.confirmed": false }, (err, res) => {
         if (err || res.length === 0) {
           reject(Error('No emails'));
         } else {
