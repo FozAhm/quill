@@ -1,5 +1,5 @@
 var Settings = require('../models/Settings');
-
+var User = require('../models/User');
 var SettingsController = {};
 
 /**
@@ -8,13 +8,27 @@ var SettingsController = {};
  * @param  {Any}      value    Value to replace it to
  * @param  {Function} callback args(err, settings)
  */
-SettingsController.updateField = function(field, value, callback){
+SettingsController.updateField = function (field, value, callback) {
   var update = {};
   update[field] = value;
   Settings
-    .findOneAndUpdate({},{
+    .findOneAndUpdate({}, {
       $set: update
-    }, {new: true}, callback);
+    }, { new: true }, (err, resDate) => {
+      User.updateMany({
+        "status.admitted": true,
+        "status.confirmed": false
+      }, {
+          "$set": { "status.confirmBy": value }
+        }, 
+        (err, res) => {
+          if (err) {
+            console.log(err);
+            callback(err, null);
+          }
+          callback(null, resDate);
+        });
+    });
 };
 
 /**
