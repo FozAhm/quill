@@ -3,6 +3,7 @@ var User = require('../models/User');
 var Settings = require('../models/Settings');
 var Mailer = require('../services/email');
 var Stats = require('../services/stats');
+var Sms = require('../services/sms');
 
 var validator = require('validator');
 var moment = require('moment');
@@ -845,4 +846,90 @@ function buildEmailList(users) {
   }
   return arr;
 }
+
+UserController.sendMassSms = function (filter, text, callback) {
+  var phoneNumbers = [];
+
+  var getPhoneNumbers = new Promise((resolve, reject) => {
+    if (filter === 'all') {
+      User.find({ "verified": true }, (err, res) => {
+        phoneNumbers = buildPhoneNumberList(res);
+        resolve(phoneNumbers);
+      });
+
+    } else if (filter === 'confirmed') {
+      User.find({ "status.confirmed": true }, (err, res) => {
+        if (err || res.length === 0) {
+          reject(Error('No phone numbers'));
+        } else {
+          phoneNumbers = buildPhoneNumberList(res);
+          resolve(phoneNumbers);
+        }
+      });
+      return;
+    } else if (filter === 'admitted') {
+      User.find({ "status.admitted": true, "status.confirmed": false }, (err, res) => {
+        if (err || res.length === 0) {
+          reject(Error('No phone numbers'));
+        } else {
+          phoneNumbers = buildPhoneNumberList(res);
+          resolve(phoneNumbers);
+        }
+      });
+    } else if (filter === 'waitlisted') {
+      User.find({
+        "status.admitted": false,
+        "status.completedProfile": true,
+      }, (err, res) => {
+        if (err || res.length === 0) {
+          reject(Error('No phone numbers'));
+        } else {
+          phoneNumbers = buildPhoneNumberList(res);
+          resolve(phoneNumbers);
+        }
+      });
+    }
+  });
+
+  getPhoneNumbers.then((phoneNumbers) => {
+    if (phoneNumbers.length === 0) {
+      callback(new Error('No phone numbers found'), null);
+    } else {
+      var smsPromises = [];
+      for (number of phoneNumbers) {
+        smsPromises.push(new Promise((resolve, reject) => {
+          Sms.sendSms(number, text, (info, err) => {
+            if (err) {
+              reject(err);
+            }
+            resolve(info);
+          });
+        }));
+      }
+
+      Promise.all(smsPromises)
+          .then((infos) => {
+            console.log(infos);
+            callback(null, phoneNumbers);
+          })
+          .catch(err => {
+            console.log(err);
+            callback(err);
+          });
+    }
+  }, (err) => {
+    callback(err.message);
+  });
+};
+
+function buildPhoneNumberList(users) {
+  var arr = [];
+  for (user of users) {
+    if (user.email !== 'admin@example.com' && !!user.confirmation.phoneNumber) {
+      arr.push(user.confirmation.phoneNumber);
+    }
+  }
+  return arr;
+}
+
 module.exports = UserController;

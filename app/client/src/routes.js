@@ -188,6 +188,16 @@ angular.module('reg')
             return UserService.getCurrentUser();
           }
         }
+      })
+      .state("app.admin.sms",{
+        url: "/admin/sms",
+        templateUrl:"views/admin/sms/sms.html",
+        controller: "AdminSmsCtrl",
+        resolve: {
+          currentUser: function(UserService){
+            return UserService.getCurrentUser();
+          }
+        }
       });
 
     $locationProvider.html5Mode({
