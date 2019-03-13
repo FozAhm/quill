@@ -895,11 +895,13 @@ UserController.sendMassSms = function (filter, text, callback) {
     if (phoneNumbers.length === 0) {
       callback(new Error('No phone numbers found'), null);
     } else {
+      var failedNumbers = [];
       var smsPromises = [];
       for (number of phoneNumbers) {
         smsPromises.push(new Promise((resolve, reject) => {
           Sms.sendSms(number, text, (info, err) => {
             if (err) {
+              failedNumbers.push(number);
               reject(err);
             }
             resolve(info);
@@ -914,7 +916,7 @@ UserController.sendMassSms = function (filter, text, callback) {
           })
           .catch(err => {
             console.log(err);
-            callback(err);
+            callback(err, failedNumbers);
           });
     }
   }, (err) => {

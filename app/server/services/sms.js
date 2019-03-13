@@ -20,7 +20,13 @@ Sms.sendSms = function (number, message, callback) {
             from: process.env.TWILIO_FROM_NUMBER,
             to: number
         })
-        .then((res, rej) => callback(res, rej));
+        .then((res) => {
+            callback(res.status, null);
+        })
+        .catch(e => {
+          console.log('error sending sms : ' + e.message)
+          callback(null, e)
+        }) 
 };
 
 module.exports = Sms;

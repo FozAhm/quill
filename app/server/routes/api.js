@@ -428,7 +428,19 @@ module.exports = function(router) {
     var text = req.body.text;
     var filter = req.body.filter;
     console.log(filter);
-    UserController.sendMassSms(filter, text, defaultResponse(req, res));
+    UserController.sendMassSms(filter, text, (err, info) => {
+      if (err) {
+        return res.status(500).send(
+          {
+            message: 'Failed to send message to these numbers : ' + info
+          }
+        );
+      } else {
+        return res.status(200).send({
+          successfulSent: info,
+        });
+      }
+    });
   });
 
 };

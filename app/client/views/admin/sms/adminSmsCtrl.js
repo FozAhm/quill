@@ -31,17 +31,17 @@ angular.module('reg')
                     });
             }
 
-            $scope.sendSms = function() {
-                if ($('.ui.form').form('is valid')){
+            $scope.sendSms = function () {
+                if ($('.ui.form').form('is valid')) {
                     SmsServices
                         .sendMassSms(
                             $scope.sms.to,
                             $scope.sms.message
-                        ).success(() => {
-                        swal('SMS sent','SMS has been sent successfully!', "success");
-                    }).error(() => {
-                        swal('SMS not sent','SMS has not been sent successfully...', "error");
-                    });
+                        ).success(response => {
+                            swal('SMS sent', 'SMS has been sent successfully!', "success");
+                        }).error(response => {
+                            swal('SMS not sent to certain numbers', response.message, "error");
+                        });
                 }
                 else {
                     sweetAlert("Uh oh!", "Please Fill The Required Fields", "error");
