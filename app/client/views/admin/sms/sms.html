@@ -1,0 +1,19 @@
+<br>
+<h3>Send a mass text!</h3>
+<div class="ui form segment">
+    <div class="field">
+        <label>Receivers</label>
+        <select class="ui dropdown" name="to" ng-model="sms.to">
+            <option value="">Select receivers</option>
+            <option value="all">All users</option>
+            <option value="admitted">Admitted Users</option>
+            <option value="confirmed">Confirmed Users</option>
+            <option value="waitlisted">Waitlisted Users</option>
+        </select>
+    </div>
+    <div class="field">
+        <label>Message</label>
+        <textarea name="message" ng-model="sms.message"></textarea>
+    </div>
+    <button class="ui button" ng-click="sendSms()">Send text</button>
+</div>
