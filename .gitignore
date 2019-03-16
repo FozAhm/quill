@@ -9,3 +9,5 @@ app.json
 .vscode/
 package-lock.json
 hidden.js
+.DS_Store
+
