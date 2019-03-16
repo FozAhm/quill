@@ -15,19 +15,23 @@ SettingsController.updateField = function (field, value, callback) {
     .findOneAndUpdate({}, {
       $set: update
     }, { new: true }, (err, resDate) => {
-      User.updateMany({
-        "status.admitted": true,
-        "status.confirmed": false
-      }, {
-          "$set": { "status.confirmBy": value }
-        }, 
-        (err, res) => {
-          if (err) {
-            console.log(err);
-            callback(err, null);
-          }
-          callback(null, resDate);
-        });
+      if (field === 'timeConfirm') {
+        User.updateMany({
+          "status.admitted": true,
+          "status.confirmed": false
+        }, {
+            "$set": { "status.confirmBy": value }
+          }, 
+          (err, res) => {
+            if (err) {
+              console.log(err);
+              callback(err, null);
+            }
+            callback(null, resDate);
+          });
+      } else {
+        callback(null, resDate);
+      }
     });
 };
 
