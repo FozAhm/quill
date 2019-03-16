@@ -157,5 +157,11 @@ angular.module("reg").controller("DashboardCtrl", [
                 }
             );
         };
+
+        $scope.showGameDetails = function() {
+            var currentDateTime = new Date(Date.now());
+            var showGameDetails = new Date(2019, 2, 17, 13, 0, 0); // March 17th at 1:00PM
+            return currentDateTime >= showGameDetails;
+        }
     }
 ]);
